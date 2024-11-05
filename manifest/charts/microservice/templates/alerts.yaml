@@ -1,0 +1,33 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "microservice.serviceinstance" . }}
+  {{- if .Values.annotations }}
+  annotations:
+  {{- range $key, $value := .Values.annotations }}
+    {{ $key }}: {{ $value }}
+  {{- end }}
+  {{- end }}
+  labels:
+    app.kubernetes.io/name: {{ include "microservice.name" . }}
+    helm.sh/chart: {{ include "microservice.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  groups:
+  - name: {{ include "microservice.serviceinstance" . }}
+    rules:
+    {{- $name := include "microservice.name" . }}
+    {{- range $v := .Values.alerts }}
+    - alert:  {{ $v.name }}
+      annotations:
+        description: 'Service {{ $name }} is in waiting state (reason: "CrashLoopBackOff").'
+        runbook_url: https://runbooks.prometheus-operator.dev/runbooks/kubernetes/kubepodcrashlooping
+        summary: Service is crash looping.
+      expr: max_over_time(kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff",
+        job="kube-state-metrics", namespace=~".*"}[5m]) >= 1
+      for: 15m
+      labels:
+        severity: warning
+    {{- end }}
