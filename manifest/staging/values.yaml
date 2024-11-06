@@ -49,18 +49,6 @@ microservice:
         name: http
 
   environment: {}
-  #   VAR1: value1
-
-  #Probes
-  #readiness:
-  #  enabled: true
-  #  path: /status/200
-  #  port: 80
-  #  initialDelaySeconds: 5
-  #  periodSeconds: 5
-  #  failureThreshold: 3
-  liveness:
-    enabled: false
 
   resources:
     limits:
