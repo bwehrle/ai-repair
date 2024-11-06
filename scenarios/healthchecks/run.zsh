@@ -3,4 +3,4 @@
 # Run the Aider application
 
 aider --dry-run \
- --load scenario.cmd
+ --load scenarios/healthchecks/scenario.cmd
