@@ -1,0 +1,6 @@
+
+healtchecks:
+  liveness:
+    url: /healthz
+  readiness:
+    url: /readyz
