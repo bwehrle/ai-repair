@@ -7,6 +7,10 @@ readiness:
    initialDelaySeconds: 5
    periodSeconds: 5
    failureThreshold: 3
-  liveness:
-    enabled: true
+liveness:
+  enabled: true
+  path: /status/200
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  failureThreshold: 5
 ```
