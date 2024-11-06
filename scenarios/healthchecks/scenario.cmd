@@ -1,4 +1,5 @@
 /add scenarios/healthchecks/repair.md
 /add manifest/staging/values.yaml
-/add src/healthcheck_test.go
-/code Healthchecks are not defined in `values.yaml`.  Please add them and a test to ensure the values used are correct.
+/add scenarios/healthchecks/configure-healthchecks.md
+/add src/config.yaml 
+/code Use the configured healthchecks to repair the issues with missing healthchecks in the values.yaml file.

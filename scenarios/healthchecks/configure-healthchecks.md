@@ -1,7 +1,7 @@
-The healtchecks are, by default, configured as below.  To change them, modify `config.yaml`.
+The readiness and liveness health check urls are, by default, configured as below.  To change them, modify `config.yaml`.
   
 ```yaml
-healtchecks:
+healthchecks:
   liveness:
     url: /alternate-livez-path
   readiness:

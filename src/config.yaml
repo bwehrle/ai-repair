@@ -1,5 +1,5 @@
 
-healtchecks:
+healthchecks:
   liveness:
     url: /healthz
   readiness:

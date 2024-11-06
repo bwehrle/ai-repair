@@ -47,13 +47,6 @@ microservice:
       - port: 8000
         targetPort: 80
         name: http
-        readinessProbe:
-          httpGet:
-            path: /status/200
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          failureThreshold: 3
 
   environment: {}
 
