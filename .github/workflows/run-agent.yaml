@@ -1,12 +1,12 @@
 name: Dispatch to Aider Agent
 
 on:
-    push:
-        branches:
-            - main
     workflow_dispatch:
 
 jobs:
     call-agent:
       uses: bwehrle/repair-agent/.github/workflows/run-agent.yaml@main
-      secrets: inherit
+      secrets:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+        DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
