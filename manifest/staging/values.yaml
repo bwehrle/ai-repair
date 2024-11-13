@@ -50,6 +50,21 @@ microservice:
 
   environment: {}
 
+  readiness:
+    enabled: true
+    path: /readyz
+    port: 80
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    failureThreshold: 3
+
+  liveness:
+    enabled: true
+    path: /healthz
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    failureThreshold: 5
+
   resources:
     limits:
       cpu: 2
